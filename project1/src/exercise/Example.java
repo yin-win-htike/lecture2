@@ -3,10 +3,12 @@ package exercise;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Reader;
+import java.io.Writer;
 
 public class Example {
 	public static void main(String[] args) {
@@ -14,8 +16,10 @@ public class Example {
 		// readOneChar();
 		// readArrayOfByte();
 		// readArrayOfChar();
-		//writeByte();
-		readAndWriteByte();
+		// writeByte();
+		// readAndWriteByte();
+		//writeChars();
+		readAndWriteChars();
 
 	}
 
@@ -163,4 +167,56 @@ public class Example {
 		}
 	}
 
+	private static void writeChars() {
+		Writer writer = null;
+		try {
+			writer = new FileWriter("C:\\javaclass\\lecture2\\project1\\writechar.txt");
+			char charVal = 'a';
+			writer.write(charVal);
+			char[] charBuff = { 'a', 'b', 'c' };
+			writer.write(charBuff);
+
+			String stringVal = "Hello World";
+			writer.write(stringVal);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				writer.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
+
+	}
+
+	private static void readAndWriteChars() {
+		Reader reader = null;
+		Writer writer = null;
+		try {
+			reader = new FileReader("C:\\javaclass\\lecture2\\project1\\char.txt");
+			writer = new FileWriter("C:\\javaclass\\lecture2\\project1\\readandwritechar.txt");
+
+			int intVal;
+
+			while ((intVal = reader.read()) >= 0) {
+				char ch = (char) intVal;
+				writer.write(ch);
+
+
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				reader.close();
+				writer.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
+	}
 }
