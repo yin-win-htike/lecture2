@@ -10,15 +10,16 @@ public class Example {
 	public static void main(String[] args) {
 		// readOneByte();
 		// readOneChar();
-		//readArrayOfByte();
+		// readArrayOfByte();
 		readArrayOfChar();
 
 	}
 
 	private static void readOneByte() {
+		InputStream input = null;
 
 		try {
-			InputStream input = new FileInputStream("C:\\javaclass\\lecture2\\project1\\bytes.txt");
+			input = new FileInputStream("C:\\javaclass\\lecture2\\project1\\bytes.txt");
 
 			int intVal;
 			while ((intVal = input.read()) >= 0) {
@@ -28,12 +29,20 @@ public class Example {
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				input.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
 		}
 	}
 
 	private static void readArrayOfByte() {
+		InputStream input = null;
 		try {
-			InputStream input = new FileInputStream("C:\\javaclass\\lecture2\\project1\\bytes.txt");
+			input = new FileInputStream("C:\\javaclass\\lecture2\\project1\\bytes.txt");
 			int length;
 			byte[] byteBuff = new byte[10];
 			while ((length = input.read(byteBuff)) >= 0) {
@@ -45,12 +54,20 @@ public class Example {
 
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				input.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
 		}
 	}
 
 	private static void readOneChar() {
+		Reader reader = null;
 		try {
-			Reader reader = new FileReader("C:\\javaclass\\lecture2\\project1\\char.txt");
+			reader = new FileReader("C:\\javaclass\\lecture2\\project1\\char.txt");
 			int intVal;
 
 			while ((intVal = reader.read()) >= 0) {
@@ -60,12 +77,20 @@ public class Example {
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
 		}
 	}
 
 	private static void readArrayOfChar() {
+		Reader input = null;
 		try {
-			Reader input = new FileReader("C:\\javaclass\\lecture2\\project1\\char.txt");
+			input = new FileReader("C:\\javaclass\\lecture2\\project1\\char.txt");
 			int length;
 			char[] charBuff = new char[10];
 			while ((length = input.read(charBuff)) >= 0) {
@@ -76,6 +101,13 @@ public class Example {
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				input.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
 		}
 	}
 
