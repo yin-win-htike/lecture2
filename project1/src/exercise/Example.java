@@ -1,9 +1,11 @@
 package exercise;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Reader;
 
 public class Example {
@@ -11,7 +13,9 @@ public class Example {
 		// readOneByte();
 		// readOneChar();
 		// readArrayOfByte();
-		readArrayOfChar();
+		// readArrayOfChar();
+		//writeByte();
+		readAndWriteByte();
 
 	}
 
@@ -104,6 +108,54 @@ public class Example {
 		} finally {
 			try {
 				input.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
+	}
+
+	private static void writeByte() {
+		OutputStream output = null;
+
+		try {
+			output = new FileOutputStream("C:\\\\javaclass\\\\lecture2\\\\project1\\\\writebyte.txt");
+			byte byteVal = 100;
+			output.write(byteVal);
+
+			byte[] byteBuff = { 0, 63, 127 };
+			output.write(byteBuff);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				output.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
+	}
+
+	private static void readAndWriteByte() {
+		OutputStream output = null;
+		FileInputStream input = null;
+		try {
+			output = new FileOutputStream(
+					"C:\\\\\\\\javaclass\\\\\\\\lecture2\\\\\\\\project1\\\\\\\\readwritebyte.txt");
+			input = new FileInputStream("C:\\javaclass\\lecture2\\project1\\bytes.txt");
+			int intVal;
+			while ((intVal = input.read()) >= 0) {
+				byte byteVal = (byte) intVal;
+
+				output.write(byteVal);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				output.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
