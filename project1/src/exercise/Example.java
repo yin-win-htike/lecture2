@@ -8,7 +8,10 @@ import java.io.Reader;
 
 public class Example {
 	public static void main(String[] args) {
-		readOneChar();
+		// readOneByte();
+		// readOneChar();
+		//readArrayOfByte();
+		readArrayOfChar();
 
 	}
 
@@ -28,6 +31,23 @@ public class Example {
 		}
 	}
 
+	private static void readArrayOfByte() {
+		try {
+			InputStream input = new FileInputStream("C:\\javaclass\\lecture2\\project1\\bytes.txt");
+			int length;
+			byte[] byteBuff = new byte[10];
+			while ((length = input.read(byteBuff)) >= 0) {
+				for (int i = 0; i < length; i++) {
+					byte byteVal = byteBuff[i];
+					System.out.print(byteVal);
+				}
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	private static void readOneChar() {
 		try {
 			Reader reader = new FileReader("C:\\javaclass\\lecture2\\project1\\char.txt");
@@ -37,6 +57,22 @@ public class Example {
 				char ch = (char) intVal;
 				System.out.print(ch);
 
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private static void readArrayOfChar() {
+		try {
+			Reader input = new FileReader("C:\\javaclass\\lecture2\\project1\\char.txt");
+			int length;
+			char[] charBuff = new char[10];
+			while ((length = input.read(charBuff)) >= 0) {
+				for (int i = 0; i < length; i++) {
+					char charVal = charBuff[i];
+					System.out.print(charVal);
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
